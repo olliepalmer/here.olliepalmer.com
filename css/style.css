@@ -96,9 +96,16 @@ body {
   font-size: 0.8em;
 }
 
-.vsmall, a, a:hover, a:visited {
+.vsmall, a, a:visited {
   color: #888;
+  text-decoration: none;
 }
+
+a:hover {
+  color:white;
+  background-color: red;
+}
+
 .vsmall {
   padding-top: 1em;
   font-size: 0.2em;

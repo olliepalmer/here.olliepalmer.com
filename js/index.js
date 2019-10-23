@@ -39,7 +39,6 @@ function newBg () {
   document.getElementById('footer').style.color = newColor;
   newColor = randomColor({hue:'yellow',luminosity:'bright'})
   document.getElementById('np').style.background = newColor;
-
 }
 
 // randomColor by David Merfield under the CC0 license
