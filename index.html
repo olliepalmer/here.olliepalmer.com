@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>movie subject generator</title>
+  <link rel="stylesheet" href="css/style.css">
+<!--   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ --></head>
+
+<body onload='newPhrase()'>
+  <div class='outer' id='bgd'>
+  <div class='middle'>
+    <div class='inner'>
+      <p><span class='small'>genre:</span><br>
+        <span id='genre'>_________________</span> <br><br>
+        <span class='small'>subject:</span><br>
+        <span id='subject'>_________________</span></p>
+        
+        <div class='buttons'>
+          <button id='na' class='w3-button w3-hover-blue' onclick='newGenre()'>new genre</button>
+          <button id='nn' class='w3-button w3-hover-blue' onclick='newSubject()'>new subject</button>
+          <button id='np' class='w3-button w3-hover-blue' onclick='newPhrase()'>new combination</button>
+        </div>
+    </div>
+  </div>
+</div>
+<script  src="js/index.js"></script>
+</body>
+
+</html>
