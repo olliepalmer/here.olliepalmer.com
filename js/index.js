@@ -10,9 +10,7 @@ function newGenre() {
   var newColor = randomColor({hue:'orange'});
   document.getElementById('genre').style.color = newColor;
   document.getElementById('na').style.background = newColor;
-  var newColor = randomColor({hue:'blue',luminosity:'dark'});
-  document.getElementById('bgd').style.background = newColor;
-
+  newBg();
 }
 
 function newSubject(){
@@ -21,9 +19,7 @@ function newSubject(){
   var newColor = randomColor({hue:'orange'});
   document.getElementById('subject').style.color = newColor;
   document.getElementById('nn').style.background = newColor;
-  var newColor = randomColor({hue:'blue',luminosity:'dark'});
-  document.getElementById('bgd').style.background = newColor;
-
+  newBg();
 }
 
 function newPhrase () {
@@ -34,8 +30,16 @@ function newPhrase () {
   document.getElementById('na').style.color = newColor;
   document.getElementById('nn').style.color = newColor;
   document.getElementById('np').style.color = newColor;
-  var newColor = randomColor({hue:'orange',luminosity:'bright'})
+}
+
+function newBg () {
+  var newColor = randomColor({hue:'blue',luminosity:'dark'});
+  document.getElementById('bgd').style.background = newColor;
+  newColor = randomColor({hue:'blue',luminosity:'light'});
+  document.getElementById('footer').style.color = newColor;
+  newColor = randomColor({hue:'yellow',luminosity:'bright'})
   document.getElementById('np').style.background = newColor;
+
 }
 
 // randomColor by David Merfield under the CC0 license

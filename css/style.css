@@ -3,7 +3,7 @@ body {
     font-family: helvetica;
     color: white;
     text-align: center;
-    font-size: 72px;
+    font-size: 72px;git
 }
 
 .outer {
@@ -26,7 +26,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    /*whatever width you want*/
 }
 
 .button {
@@ -95,4 +94,12 @@ body {
 
 .small {
   font-size: 0.8em;
+}
+
+.vsmall, a, a:hover, a:visited {
+  color: #888;
+}
+.vsmall {
+  padding-top: 1em;
+  font-size: 0.2em;
 }

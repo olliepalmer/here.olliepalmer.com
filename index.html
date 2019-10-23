@@ -10,21 +10,23 @@
 
 <body onload='newPhrase()'>
   <div class='outer' id='bgd'>
-  <div class='middle'>
-    <div class='inner'>
-      <p><span class='small'>genre:</span><br>
-        <span id='genre'>_________________</span> <br><br>
-        <span class='small'>subject:</span><br>
-        <span id='subject'>_________________</span></p>
-        
+    <div class='middle'>
+      <div class='inner'>
+        <p>
+          <span class='small'>subject:</span><br>
+          <span id='subject'>_________________</span></p>
+          <p><span class='small'>genre:</span><br>
+            <span id='genre'>_________________</span></p>
         <div class='buttons'>
-          <button id='na' class='w3-button w3-hover-blue' onclick='newGenre()'>new genre</button>
           <button id='nn' class='w3-button w3-hover-blue' onclick='newSubject()'>new subject</button>
+          <button id='na' class='w3-button w3-hover-blue' onclick='newGenre()'>new genre</button>
           <button id='np' class='w3-button w3-hover-blue' onclick='newPhrase()'>new combination</button>
         </div>
+        <p class='vsmall' id='footer'>movie subject generator, by <a href="https://olliepalmer.com" target='_blank'>ollie palmer</a> for the <a href="https://sd.olliepalmer.com" target="_blank">scripted design course</a> at akv st joost 2019
+          <br>mit licence (reuse as you like!); code on <a href="https://github.com/olliepalmer/movie-prompt" target="_blank">github<a></p>
+      </div>
     </div>
   </div>
-</div>
 <script  src="js/index.js"></script>
 </body>
 
