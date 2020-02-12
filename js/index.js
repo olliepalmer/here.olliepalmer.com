@@ -1,37 +1,37 @@
 // genres and subjects
 var genre = [
-  "a western",
+  "western",
   "film noir",
   "neo noir",
-  "a coming-of-age film",
+  "coming-of-age film",
   "thriller",
   "psychological thriller",
-  "a soap opera",
+  "soap opera",
   "horror",
-  "a children’s film",
-  "an animal journey",
+  "children’s film",
+  "animal journey",
   "courtroom drama",
   "docudrama",
   "fly-on-the-wall documentary",
-  "a musical",
+  "musical",
   "magical realism",
   "procedural drama",
   "mockumentary",
   "slapstick",
-  "a cooking show",
-  "an educational video",
-  "a game show",
+  "cooking show",
+  "educational video",
+  "game show",
   "infomercial",
-  "an advertisement",
+  "advertisement",
   "corporate training film",
   "propaganda film",
   "news bulletin",
-  "a news segment",
-  "a magazine show",
+  "news segment",
+  "magazine show",
   "stand up comedy",
   "talk show",
   "kung fu film",
-  "an epic saga",
+  "epic saga",
   "road movie",
   "music video",
   "low-budget horror",
@@ -72,7 +72,8 @@ var subject = [
   "farce",
   "joke",
   "urban legend",
-  "misunderstanding"
+  "misunderstanding",
+  "helplessness"
 ]
 
 
@@ -109,7 +110,7 @@ function newBg () {
   var newColor = randomColor({hue:'blue',luminosity:'dark'});
   document.getElementById('bgd').style.background = newColor;
   newColor = randomColor({hue:'blue',luminosity:'light'});
-  document.getElementById('footer').style.color = newColor;
+  // document.getElementById('footer').style.color = newColor;
   newColor = randomColor({hue:'yellow',luminosity:'bright'})
   document.getElementById('np').style.background = newColor;
 }
