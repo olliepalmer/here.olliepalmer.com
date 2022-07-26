@@ -18,13 +18,13 @@
     <div class='middle'>
       <div class='inner'>
         <p>
-          <div class="third"><span class='small'>story arc</span><br><span id='subject'>_________________</span></p></div>
-          <div class="third"><span class='small'>genre</span><br><span id='genre'>_________________</span></p></div>
-          <div class="third"><span class='small'>setting</span><br><span id='here'>_________________</span></p></div>
+          <div class="third" onclick='newSubject()'><span class='small'>story arc</span><br><span id='subject'>_________________</span></p></div>
+          <div class="third" onclick='newGenre()'><span class='small'>genre</span><br><span id='genre'>_________________</span></p></div>
+          <div class="third" onclick='newHere()'><span class='small'>setting</span><br><span id='here'>_________________</span></p></div>
         <div class='buttons'>
-          <button id='nl' class='w3-button w3-hover-blue' onclick='newHere()'>new location</button>
           <button id='nn' class='w3-button w3-hover-blue' onclick='newSubject()'>new story arc</button>
           <button id='na' class='w3-button w3-hover-blue' onclick='newGenre()'>new genre</button>
+          <button id='nl' class='w3-button w3-hover-blue' onclick='newHere()'>new location</button>
           <button id='np' class='w3-button w3-hover-blue' onclick='newPhrase()'>new everything</button>
         </div>
         <p class='vsmall' id='footer'><br><br>creative prompt generator, created for the <a href="https://disi.org" target="_blank">distributed intelligences summer institute</a> 2022.<br>
