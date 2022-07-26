@@ -107,9 +107,9 @@ function newPhrase () {
 }
 
 function newBg () {
-  var newColor = randomColor({hue:'blue',luminosity:'dark'});
+  var newColor = randomColor({hue:'grey',luminosity:'dark'});
   document.getElementById('bgd').style.background = newColor;
-  newColor = randomColor({hue:'blue',luminosity:'light'});
+  newColor = randomColor({hue:'red',luminosity:'light'});
   // document.getElementById('footer').style.color = newColor;
   newColor = randomColor({hue:'yellow',luminosity:'bright'})
   document.getElementById('np').style.background = newColor;

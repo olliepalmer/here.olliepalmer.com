@@ -136,3 +136,9 @@ a:hover {
     border-radius: 3px;
   }
 }
+
+.tl, .tr, .bl, .br { font-size: .5em }
+.tl, .tr { position: absolute; top: 3px }
+.bl, .br { position: absolute; bottom: 3px }
+.tl, .bl { left: 3px }
+.tr, .br { right: 3px }
