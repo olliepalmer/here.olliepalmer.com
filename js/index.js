@@ -76,12 +76,27 @@ var subject = [
   "helplessness"
 ]
 
+var here = [
+  'here & now',
+  'here & then',
+  'there & now',
+  'there & then'
+]
+
+function newHere() {
+  var randomHere = here[Math.floor(Math.random() * here.length)];
+  document.getElementById('here').innerHTML = randomHere;
+  var newColor = randomColor({hue:'light'});
+  document.getElementById('here').style.color = newColor;
+  document.getElementById('nl').style.background = newColor;
+  newBg();
+}
 
 
 function newGenre() {
   var randomGenre = genre[Math.floor(Math.random() * genre.length)];
   document.getElementById('genre').innerHTML = randomGenre;
-  var newColor = randomColor({hue:'orange'});
+  var newColor = randomColor({hue:'light'});
   document.getElementById('genre').style.color = newColor;
   document.getElementById('na').style.background = newColor;
   newBg();
@@ -90,7 +105,7 @@ function newGenre() {
 function newSubject(){
   var randomSubject = subject[Math.floor(Math.random() * subject.length)];
   document.getElementById('subject').innerHTML = randomSubject;
-  var newColor = randomColor({hue:'orange'});
+  var newColor = randomColor({hue:'light'});
   document.getElementById('subject').style.color = newColor;
   document.getElementById('nn').style.background = newColor;
   newBg();
@@ -99,15 +114,18 @@ function newSubject(){
 function newPhrase () {
   newGenre();
   newSubject();
-  var newColor = randomColor({hue:'blue',luminosity:'dark'});
+  newHere();
+  var newColor = randomColor({hue:'monochrome',luminosity:'dark'});
   document.getElementById('bgd').style.background = newColor;
   document.getElementById('na').style.color = newColor;
   document.getElementById('nn').style.color = newColor;
   document.getElementById('np').style.color = newColor;
+  document.getElementById('nl').style.color = newColor;
+
 }
 
 function newBg () {
-  var newColor = randomColor({hue:'grey',luminosity:'dark'});
+  var newColor = randomColor({hue:'monochrome',luminosity:'dark'});
   document.getElementById('bgd').style.background = newColor;
   newColor = randomColor({hue:'red',luminosity:'light'});
   // document.getElementById('footer').style.color = newColor;
