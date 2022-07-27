@@ -73,7 +73,11 @@ var subject = [
   "joke",
   "urban legend",
   "misunderstanding",
-  "helplessness"
+  "helplessness",
+  "fish out of water",
+  "flying too close to the sun",
+  "odd couple",
+  "workplace conflict"
 ]
 
 var here = [
