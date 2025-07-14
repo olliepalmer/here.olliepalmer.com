@@ -39,7 +39,7 @@
       vertical-align: middle;
       overflow: hidden;
       text-decoration: none;
-      color: inherit;
+      color: black;
       background-color: inherit;
       text-align: center;
       cursor: pointer;
@@ -52,6 +52,7 @@
     .w3-hover-blue:hover {
       color: #fff !important;
       background-color: black !important;
+      color: white !important;
     }
     .small {
       font-size: 0.6em;
@@ -105,8 +106,8 @@
       <div class='inner' id='promptContainer'>
         <div class='buttons' id='buttonContainer'></div>
         <p class='vsmall' id='footer'><br><br>
-          creative prompt generator originally developed for the <a href="https://disi.org" target="_blank">diverse intelligences summer institute</a> 2022. <br><br>
-          built by <a href="https://olliepalmer.com" target='_blank'>ollie palmer</a>. source code is <a href="https://github.com/olliepalmer/here.olliepalmer.com" target="_blank">open source</a> under an MIT license. use, adapt, modify as you wish.
+          creative prompt generator originally developed for the <a href="https://disi.org" target="_blank">diverse intelligences summer institute</a> 2022; updated for 2025. <br><br>
+          built by <a href="https://olliepalmer.com" target='_blank'>ollie palmer</a>. source code is <a href="https://github.com/olliepalmer/here.olliepalmer.com" target="_blank">open source</a> under an MIT license: use, adapt, modify as you wish.
         </p>
       </div>
     </div>
@@ -122,8 +123,10 @@
       return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     }
 
+    // quick note here, the prompts load from a Google Sheets with three columns. Previously this was a javascript array, but the Google Sheets method allows me to update columns on-the-fly (so I could, say, add some suggestions during a workshop)
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRIVOA7tXPgKxRyRi1sJa80yluehb0QJbXA_E69yFXGs5u7ubHbbeQfge3aVcnGvJ2hnc7Q66d8Wv7N/pub?output=csv';
     let dataRows = [], headers = [];
+
 
     function parseCSV(csvText) {
       const rows = [];
