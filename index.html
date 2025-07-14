@@ -1,40 +1,221 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <title>creative prompt generator</title>
-  <link rel="stylesheet" href="css/style.css">
-<!--   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- --></head>
+  <style>
+    body {
+      background: #000;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      color: white;
+      text-align: center;
+      font-size: 68px;
+      text-transform: lowercase;
+    }
+    .outer {
+      display: table;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      transition: background 2s ease;
+      will-change: background;
+    }
+    .middle {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    .w3-button {
+      border: none;
+      display: inline-block;
+      padding: 8px 16px;
+      vertical-align: middle;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      background-color: inherit;
+      text-align: center;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 36px;
+      box-shadow: 0px 10px 74px -28px rgba(0, 0, 0, 0.6);
+      margin: 8px;
+      border-radius: 8px;
+    }
+    .w3-hover-blue:hover {
+      color: #fff !important;
+      background-color: black !important;
+    }
+    .small {
+      font-size: 0.6em;
+      font-weight: lighter;
+    }
+    .vsmall, a, a:visited {
+      color: #DBF227;
+      text-decoration: none;
+    }
+    a:hover {
+      color: white;
+      background-color: red;
+    }
+    .vsmall {
+      padding-top: 1em;
+      font-size: 0.2em;
+      color: #D6D58E;
+    }
+    .tl, .tr, .bl, .br {
+      font-size: .5em;
+      user-select: none;
+    }
+    .tl, .tr { position: absolute; top: 3px }
+    .bl, .br { position: absolute; bottom: 3px }
+    .tl, .bl { left: 3px }
+    .tr, .br { right: 3px }
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .buttons {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+  </style>
+</head>
 
-
-
-
-<body onload='newPhrase()'>
+<body>
   <div class='outer' id='bgd'>
     <div class='tl'>here</div>
     <div class='tr'>now</div>
     <div class='middle'>
-      <div class='inner'>
-        <p>
-          <div class="third" onclick='newSubject()'><span class='small'>story arc</span><br><span id='subject'>_________________</span></p></div>
-          <div class="third" onclick='newGenre()'><span class='small'>genre</span><br><span id='genre'>_________________</span></p></div>
-          <div class="third" onclick='newHere()'><span class='small'>setting</span><br><span id='here'>_________________</span></p></div>
-        <div class='buttons'>
-          <button id='nn' class='w3-button w3-hover-blue' onclick='newSubject()'>new story arc</button>
-          <button id='na' class='w3-button w3-hover-blue' onclick='newGenre()'>new genre</button>
-          <button id='nl' class='w3-button w3-hover-blue' onclick='newHere()'>new setting</button>
-          <button id='np' class='w3-button w3-hover-blue' onclick='newPhrase()'>new everything</button>
-        </div>
-        <p class='vsmall' id='footer'><br><br>creative prompt generator, created for the <a href="https://disi.org" target="_blank">diverse intelligences summer institute</a> 2022.<br>
-          <br>copyright © 2022 <a href="https://olliepalmer.com" target='_blank'>ollie palmer</a>. source code published on <a href="https://github.com/olliepalmer/here.olliepalmer.com" target="_blank">github</a> under an MIT license (use, adapt, modify as you like) :)</p>
+      <div class='inner' id='promptContainer'>
+        <div class='buttons' id='buttonContainer'></div>
+        <p class='vsmall' id='footer'><br><br>
+          creative prompt generator originally developed for the <a href="https://disi.org" target="_blank">diverse intelligences summer institute</a> 2022. <br><br>
+          built by <a href="https://olliepalmer.com" target='_blank'>ollie palmer</a>. source code is <a href="https://github.com/olliepalmer/here.olliepalmer.com" target="_blank">open source</a> under an MIT license. use, adapt, modify as you wish.
+        </p>
       </div>
     </div>
     <div class='bl'>there</div>
     <div class='br'>then</div>
   </div>
-<script  src="js/index.js"></script>
-</body>
 
+  <script>
+    function randomColor(contrast = 'dark') {
+      const hue = Math.floor(Math.random() * 360);
+      const saturation = 70 + Math.floor(Math.random() * 30);
+      const lightness = contrast === 'dark' ? 20 + Math.floor(Math.random() * 20) : 80 + Math.floor(Math.random() * 10);
+      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    }
+
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRIVOA7tXPgKxRyRi1sJa80yluehb0QJbXA_E69yFXGs5u7ubHbbeQfge3aVcnGvJ2hnc7Q66d8Wv7N/pub?output=csv';
+    let dataRows = [], headers = [];
+
+    function parseCSV(csvText) {
+      const rows = [];
+      const lines = csvText.trim().split('\n');
+      headers = lines[0].split(',').map(h => h.trim());
+      for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].match(/("[^"]*"|[^,]+)/g)?.map(val => val.replace(/^"|"$/g, '')) || [];
+        const row = {};
+        headers.forEach((header, index) => {
+          row[header] = values[index] ? values[index].trim() : '';
+        });
+        rows.push(row);
+      }
+      return rows;
+    }
+
+    function getRandomFromColumn(column, currentValue = null) {
+      const entries = dataRows.map(row => row[column]).filter(Boolean);
+      if (entries.length <= 1) return entries[0] || '';
+      let newEntry;
+      do {
+        newEntry = entries[Math.floor(Math.random() * entries.length)];
+      } while (newEntry === currentValue);
+      return newEntry;
+    }
+
+    function createPromptUI() {
+      const container = document.getElementById('promptContainer');
+      const buttonBar = document.getElementById('buttonContainer');
+
+      headers.forEach((header, index) => {
+        const spanId = `prompt_${index}`;
+        const div = document.createElement('div');
+        div.className = 'third';
+        div.onclick = () => updatePrompt(index);
+        div.innerHTML = `<span class='small'>${header}</span><br><span id='${spanId}' class='fade-in-up visible'>_________________</span>`;
+        container.insertBefore(div, buttonBar);
+
+        const btn = document.createElement('button');
+        btn.id = `btn_${index}`;
+        btn.className = 'w3-button w3-hover-blue';
+        btn.innerText = `new ${header}`;
+        btn.onclick = () => updatePrompt(index);
+        buttonBar.appendChild(btn);
+      });
+
+      const allBtn = document.createElement('button');
+      allBtn.id = 'np';
+      allBtn.className = 'w3-button w3-hover-blue';
+      allBtn.innerText = 'new everything';
+      allBtn.onclick = updateAllPrompts;
+      buttonBar.appendChild(allBtn);
+    }
+
+    function updatePrompt(index) {
+      const header = headers[index];
+      const span = document.getElementById(`prompt_${index}`);
+      const current = span.textContent;
+      const text = getRandomFromColumn(header, current);
+      const colour = randomColor('light');
+      span.classList.remove('visible');
+      void span.offsetWidth;
+      span.textContent = text;
+      span.style.color = colour;
+      setTimeout(() => span.classList.add('visible'), 10);
+      document.getElementById(`btn_${index}`).style.background = colour;
+      newBg();
+    }
+
+    function updateAllPrompts() {
+      headers.forEach((_, i) => updatePrompt(i));
+      newBg();
+    }
+
+    function newBg() {
+      const color1 = randomColor('dark');
+      const color2 = randomColor('dark');
+      const angle = Math.floor(Math.random() * 360);
+      document.getElementById('bgd').style.background = `linear-gradient(${angle}deg, ${color1}, ${color2})`;
+      document.getElementById('np').style.background = randomColor('light');
+    }
+
+    fetch(sheetURL)
+      .then(response => response.text())
+      .then(csvText => {
+        dataRows = parseCSV(csvText);
+        createPromptUI();
+        updateAllPrompts();
+      })
+      .catch(error => {
+        console.error('Error fetching or processing data:', error);
+      });
+  </script>
+</body>
 </html>
